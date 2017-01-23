@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mdamine.classifiedsv2.dao.ClassifiedMapper">
+
+	<resultMap id="result" type="classified">
+		<result property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="description" column="description" />
+	</resultMap>
+
+	<select id="getAll" resultMap="result">
+		SELECT id,title,description
+		FROM
+		classifieds;
+	</select>
+
+	<insert id="save" parameterType="classified">
+		INSERT INTO classifieds
+		(id,title,description)
+		VALUE
+		(#{id},#{title},#{description})
+	</insert>
+
+	<update id="update" parameterType="classified">
+		UPDATE classified
+		SET
+		title =
+		#{title},
+		description = #{description}
+		where id =
+		#{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM classifieds
+		WHERE
+		id =
+		#{id}
+	</delete>
+
+</mapper>
